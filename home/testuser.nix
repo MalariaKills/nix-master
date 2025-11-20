@@ -17,7 +17,7 @@
     enable = true;
     package = pkgs.vscode;  # or pkgs.vscodium if you decide to go FOSS later
 
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       
       #Nix
       jnoortheen.nix-ide
