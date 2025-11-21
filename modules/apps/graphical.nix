@@ -7,7 +7,7 @@
     # --- Common apps ---
     joplin-desktop
     steam
-    rustdesk
+    #rustdesk too heavy for vm
     nicotine-plus
     discord
 
