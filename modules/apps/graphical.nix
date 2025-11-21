@@ -17,9 +17,9 @@
     gimp
 
     # --- KDE basics on Plasma ---
-    dolphin        # file manager
-    konsole        # terminal
-    spectacle      # screenshots
-    kate           # GUI text editor
+    kdePackages.dolphin        # file manager
+    kdePackages.konsole        # terminal
+    kdePackages.spectacle      # screenshots
+    kdePackages.kate           # GUI text editor
   ];
 }
