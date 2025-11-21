@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../modules/apps/core.nix
+      ../modules/apps/graphical.nix
     ];
 
   # Bootloader.
@@ -90,14 +92,7 @@
     isNormalUser = true;
     description = "testuser";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -108,11 +103,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    vscode
-  ];
+
+  ## Packages are imported
+  # environment.systemPackages = with pkgs; [
+  #   vim
+  #   git
+  #   vscode
+  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
