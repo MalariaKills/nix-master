@@ -51,6 +51,12 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # Add COSMIC as an additional desktop option
+  services.desktopManager.cosmic.enable = true;
+
+  # Do NOT enable the cosmic-greeter (it replaces SDDM)
+  # services.displayManager.cosmic-greeter.enable = false;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
