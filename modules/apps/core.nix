@@ -34,9 +34,6 @@
     # --- Editors (safe everywhere) ---
     neovim
 
-    # --- Joplin CLI (works on all platforms) ---
-    joplin-cli
-
     # --- Nix tooling (for your flake/HM workflow) ---
     nil                  # Nix LSP (works with VS Code)
     alejandra            # Nix formatter
