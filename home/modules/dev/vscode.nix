@@ -1,3 +1,7 @@
+# This is a home manager config for vscode
+# Intended to be used across ALL production devices
+# Cannot add to modules/apps core.nix or graphical.nix
+# Because declaring extensions requires HM.
 { pkgs, ... }:
 
 {
@@ -16,6 +20,7 @@
       golang.go
 
       #General
+      github.copilot
       esbenp.prettier-vscode
       eamodio.gitlens
     ];
