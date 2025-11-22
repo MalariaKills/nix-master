@@ -4,6 +4,7 @@
 
   imports = [
     ./modules/dev/vscode.nix
+    ./modules/terminal/wezterm.nix
   ];
 
   home.username = "testuser";
