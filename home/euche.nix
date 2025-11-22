@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./modules/dev/vscode.nix
+    ../modules/dev/vscode.nix
   ];
 
   home.username = "euche";
