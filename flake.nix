@@ -12,36 +12,82 @@
   outputs = { self, nixpkgs, home-manager, ... }:
   let
     system = "x86_64-linux";
-  in {
-    nixosConfigurations.nixos-vm = nixpkgs.lib.nixosSystem {
+
+    pkgsFor = system: import nixpkgs {
       inherit system;
-
-      modules = [
-        ./hosts/nixos-vm/default.nix
-
-        # Home Manager as a NixOS module, but flake-managed
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          # Attach the HM config for testuser
-          home-manager.users.testuser = import ./home/testuser.nix;
-        }
-      ];
+      config.allowUnfree = true;
     };
+  in {
+    ########################################
+    ## NixOS hosts
+    ########################################
 
-    # Optional: allow running `home-manager switch --flake .#testuser`
-    homeConfigurations.testuser = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
+    nixosConfigurations = {
+      # VM you’ve been using to prototype
+      nixos-vm = nixpkgs.lib.nixosSystem {
         inherit system;
-        config.allowUnfree = true;
+        modules = [
+          ./hosts/nixos-vm/default.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.testuser = import ./home/testuser.nix;
+          }
+        ];
       };
 
-      modules = [
-        ./home/testuser.nix
-      ];
+      # Framework 13 laptop (legatvs, user: spablo)
+      legatvs = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/legatvs/default.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.spablo = import ./home/spablo.nix;
+          }
+        ];
+      };
+
+      # Desktop (euche, user: euche) – you’ll create these files next
+      euche = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/euche/default.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.euche = import ./home/euche.nix;
+          }
+        ];
+      };
+    };
+
+    ########################################
+    ## Standalone Home Manager configs
+    ########################################
+
+    homeConfigurations = {
+      testuser = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor system;
+        modules = [ ./home/testuser.nix ];
+      };
+
+      spablo = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor system;
+        modules = [ ./home/spablo.nix ];
+      };
+
+      euche = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor system;
+        modules = [ ./home/euche.nix ];
+      };
     };
   };
 }
-
