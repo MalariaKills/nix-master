@@ -2,11 +2,13 @@
 
 {
   imports = [
-    ./modules/dev/vscode.nix
     ./modules/terminal/wezterm.nix
     ./modules/terminal/starship.nix
     ./modules/terminal/fish.nix
     ./modules/terminal/fastfetch.nix
+    
+    ./modules/dev/vscode.nix
+
     ./modules/fonts/default.nix
   ];
 
