@@ -1,52 +1,35 @@
 { config, pkgs, ... }:
 
 {
-  # Ensure KDE apps honor the dark color scheme
-  xdg.configFile."kdeglobals".text = ''
-[General]
-ColorScheme=BreezeDark
+  programs.plasma = {
+    enable = true;
 
-[Icons]
-Theme=breeze-dark
+    # Entire Plasma desktop theme
+    workspace.lookAndFeel = "org.kde.breezedark.desktop";
 
-[KDE]
-widgetStyle=Breeze
-LookAndFeelPackage=BreezeDark
-'';  
+    # Plasma theme (panel, widgets)
+    workspace.theme = "Breeze Dark";
 
-  # Plasma desktop theme
-  xdg.configFile."plasmarc".text = ''
-[Theme]
-name=BreezeDark
-color=BreezeDark
-'';  
+    # Window decorations
+    workspace.windowDecoration = {
+      theme = "Breeze";
+      buttons = "close,maximize,minimize";
+    };
 
-  # Window decorations (KWin)
-  xdg.configFile."kwinrc".text = ''
-[org.kde.kdecoration2]
-theme=Breeze
-plugin=org.kde.breeze
-'';  
+    # App color schemes (Dolphin, System Settings, all KDE apps)
+    workspace.colorScheme = "BreezeDark";
 
-  # GTK 3 + 4 Themes (fixes Dolphin + other GTK apps)
-  xdg.configFile."gtk-3.0/settings.ini".text = ''
-[Settings]
-gtk-theme-name=Breeze-Dark
-gtk-icon-theme-name=breeze-dark
-gtk-application-prefer-dark-theme=1
-'';  
+    # Icons
+    workspace.iconTheme = "breeze-dark";
 
-  xdg.configFile."gtk-4.0/settings.ini".text = ''
-[Settings]
-gtk-theme-name=Breeze-Dark
-gtk-icon-theme-name=breeze-dark
-gtk-application-prefer-dark-theme=1
-'';  
+    # Cursors (optional)
+    #workspace.cursorTheme = "Breeze_Snow";
 
-  # Install theme packages (NixOS requires these!)
-  home.packages = with pkgs; [
-    kdePackages.breeze
-    kdePackages.breeze-gtk
-    kdePackages.breeze-icons
-  ];
+    # GTK apps (Firefox, Discord, VSCode, Chrome, Steam, etc.)
+    gtk = {
+      enable = true;
+      theme = "Breeze-Dark";
+      iconTheme = "breeze-dark";
+    };
+  };
 }
