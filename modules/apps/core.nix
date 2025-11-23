@@ -25,7 +25,6 @@
     zoxide           # smarter cd
     fzf              # fuzzy finder
     bat              # cat with syntax highlighting
-    fastfetch        # system summary
 
     # --- JSON / YAML tools ---
     jq
