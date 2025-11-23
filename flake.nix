@@ -33,6 +33,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+
+            # Automatically back up conflicting files as *.backup
+            home-manager.backupFileExtension = "backup";
+
             home-manager.users.testuser = import ./home/testuser.nix;
           }
         ];
@@ -48,6 +52,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+
+            # Automatically back up conflicting files as *.backup
+            home-manager.backupFileExtension = "backup";
+
             home-manager.users.spablo = import ./home/spablo.nix;
           }
         ];
@@ -63,6 +71,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+
+            # Automatically back up conflicting files as *.backup
+            home-manager.backupFileExtension = "backup";
+
             home-manager.users.euche = import ./home/euche.nix;
           }
         ];
