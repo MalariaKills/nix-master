@@ -10,6 +10,8 @@
       local wezterm = require 'wezterm'
 
       return {
+        default_prog = { "fish", "-l" },
+        
         font = wezterm.font_with_fallback {
           { family = "Monaspace Xenon", weight = "Regular" },
           { family = "JetBrainsMono Nerd Font Mono", weight = "Regular" },
