@@ -3,6 +3,8 @@
 {
 
   imports = [
+    ./modules/desktop/plasma.nix
+
     ./modules/terminal/wezterm.nix
     ./modules/terminal/starship.nix
     ./modules/terminal/fish.nix
