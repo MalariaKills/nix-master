@@ -5,6 +5,7 @@
     ./modules/dev/vscode.nix
     ./modules/terminal/wezterm.nix
     ./modules/terminal/starship.nix
+    ./modules/terminal/fish.nix
     ./modules/fonts/default.nix
   ];
 
