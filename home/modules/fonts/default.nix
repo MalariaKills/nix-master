@@ -1,18 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  # Enable fontconfig for WezTerm, VSCode, etc.
+  # Fontconfig required so WezTerm + system apps see fonts
   fonts.fontconfig.enable = true;
 
-  # Install fonts available to this user
   home.packages = with pkgs; [
-    # JetBrains Mono Nerd Font (patched for terminals)
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    # Nerd Fonts mono
+    nerd-fonts.jetbrains-mono
 
-    # Emoji support (WezTerm + browsers)
+    # Emoji fonts
     noto-fonts-emoji
 
-    # Monaspace (Xenon + family)
-    monaspace
+    # Monaspace family (Xenon)
+    pkgs.monaspace
   ];
 }
