@@ -75,7 +75,7 @@
       ];
 
       # Hyphen needs quoting in Nix
-      "logoColor-1" = "38;2;126;77;210";  # Classic Nix purple
+      "logoColor-1" = "38;2;215;135;95";
     };
   };
 }
