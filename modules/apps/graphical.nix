@@ -21,5 +21,7 @@
     kdePackages.konsole        # terminal
     kdePackages.spectacle      # screenshots
     kdePackages.kate           # GUI text editor
+    kdePackages.kwallet        # KDE wallet for credential storage
+    kdePackages.kwalletmanager # GUI for managing KWallet
   ];
 }

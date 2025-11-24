@@ -45,6 +45,17 @@
 
   services.desktopManager.cosmic.enable = true;
 
+  # Enable KWallet for credential storage (needed by VSCode, browsers, etc.)
+  security.pam.services.sddm.enableKwallet = true;
+  security.pam.services.login.enableKwallet = true;
+
+  # Enable XDG Desktop Portal for proper app integration
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+    config.common.default = "kde";
+  };
+
   services.xserver.xkb = {
     layout = "us";
     variant = "";
