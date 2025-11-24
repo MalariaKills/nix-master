@@ -5,14 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
 
-    plasma-manager.url = "github:nix-community/plasma-manager";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-
     # Make home-manager use the same nixpkgs
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, plasma-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }:
   let
     system = "x86_64-linux";
 
@@ -39,11 +36,6 @@
 
             # Automatically back up conflicting files as *.backup
             home-manager.backupFileExtension = "backup";
-            
-            #Plasma Manager
-            home-manager.sharedModules = [
-            plasma-manager.homeModules.plasma-manager
-            ];
 
             home-manager.users.testuser = import ./home/testuser.nix;
           }
@@ -64,11 +56,6 @@
             # Automatically back up conflicting files as *.backup
             home-manager.backupFileExtension = "backup";
 
-            #Plasma Manager
-            home-manager.sharedModules = [
-            plasma-manager.homeModules.plasma-manager
-            ];
-
             home-manager.users.spablo = import ./home/spablo.nix;
           }
         ];
@@ -87,11 +74,6 @@
 
             # Automatically back up conflicting files as *.backup
             home-manager.backupFileExtension = "backup";
-
-            #Plasma Manager
-            home-manager.sharedModules = [
-            plasma-manager.homeModules.plasma-manager
-            ];
 
             home-manager.users.euche = import ./home/euche.nix;
           }
