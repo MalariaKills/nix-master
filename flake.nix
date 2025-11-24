@@ -42,7 +42,7 @@
             
             #Plasma Manager
             home-manager.sharedModules = [
-            plasma-manager.homeManagerModules.plasma-manager
+            plasma-manager.homeModules.plasma-manager
             ];
 
             home-manager.users.testuser = import ./home/testuser.nix;
@@ -66,7 +66,7 @@
 
             #Plasma Manager
             home-manager.sharedModules = [
-            plasma-manager.homeManagerModules.plasma-manager
+            plasma-manager.homeModules.plasma-manager
             ];
 
             home-manager.users.spablo = import ./home/spablo.nix;
@@ -90,7 +90,7 @@
 
             #Plasma Manager
             home-manager.sharedModules = [
-            plasma-manager.homeManagerModules.plasma-manager
+            plasma-manager.homeModules.plasma-manager
             ];
 
             home-manager.users.euche = import ./home/euche.nix;

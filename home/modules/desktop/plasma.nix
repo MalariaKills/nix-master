@@ -4,32 +4,41 @@
   programs.plasma = {
     enable = true;
 
-    # Entire Plasma desktop theme
-    workspace.lookAndFeel = "org.kde.breezedark.desktop";
+    workspace = {
+      # Global theme (Look & Feel)
+      lookAndFeel = "org.kde.breezedark.desktop";
 
-    # Plasma theme (panel, widgets)
-    workspace.theme = "Breeze Dark";
+      # Plasma theme (panel, widgets)
+      theme = "Breeze Dark";
 
-    # Window decorations
-    workspace.windowDecoration = {
-      theme = "Breeze";
-      buttons = "close,maximize,minimize";
-    };
+      # App color scheme (Dolphin, System Settings, etc.)
+      colorScheme = "BreezeDark";
 
-    # App color schemes (Dolphin, System Settings, all KDE apps)
-    workspace.colorScheme = "BreezeDark";
-
-    # Icons
-    workspace.iconTheme = "breeze-dark";
-
-    # Cursors (optional)
-    #workspace.cursorTheme = "Breeze_Snow";
-
-    # GTK apps (Firefox, Discord, VSCode, Chrome, Steam, etc.)
-    gtk = {
-      enable = true;
-      theme = "Breeze-Dark";
+      # Icons
       iconTheme = "breeze-dark";
+
+      # If this ever errors, just comment it out:
+      # cursorTheme = "Breeze_Snow";
     };
   };
+
+  # GTK apps (Firefox, Discord, VSCode, etc.) handled by plain Home Manager
+      gtk = {
+      enable = true;
+
+      theme = {
+      name = "Breeze-Dark";
+    # Optional but nice to be explicit:
+    # package = pkgs.kdePackages.breeze-gtk or pkgs.libsForQt5.breeze-gtk;
+  };
+
+      iconTheme = {
+    name = "breeze-dark";
+    # optional: package = pkgs.kdePackages.breeze-icons;
+  };
+
+  # Tell GTK apps explicitly: prefer dark
+     gtk3.extraConfig."gtk-application-prefer-dark-theme" = 1;
+     gtk4.extraConfig."gtk-application-prefer-dark-theme" = 1;
+};
 }
