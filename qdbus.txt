@@ -1,0 +1,9 @@
+👹 testuser ・ nixos ~   〆 qdbus org.kde.kwalletd6
+/
+/MainApplication
+/modules
+/modules/kwalletd5
+/modules/kwalletd6
+/org
+/org/kde
+/org/kde/kwalletd
