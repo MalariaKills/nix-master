@@ -92,33 +92,6 @@
   ];
 
   ###################################
-  # System-level: GNOME Keyring
-  ###################################
-  services.gnome.gnome-keyring.enable = true;
-
-  # Make sure the keyring unlocks when you log in via SDDM/TTY
-  security.pam.services.login.gnome-keyring.enable = true;
-  security.pam.services.sddm.gnome-keyring.enable = true;
-
-  ###################################
-  # System-level: XDG Portals
-  ###################################
-  xdg.portal = {
-    enable = true;
-
-    extraPortals = [
-      pkgs.xdg-desktop-portal-kde
-      pkgs.xdg-desktop-portal-gtk
-    ];
-
-    config.common.default = "kde";
-  };
-
-  environment.systemPackages = with pkgs; [
-    xdg-utils
-  ];
-
-  ###################################
   # NixOS State Version
   ###################################
   system.stateVersion = "25.05";

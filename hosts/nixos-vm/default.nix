@@ -93,37 +93,6 @@
   ];
 
   ###################################
-  # System-level: GNOME Keyring
-  # (auto-unlock at login + VSCode/Copilot integration)
-  ###################################
-  services.gnome.gnome-keyring.enable = true;
-
-  # unlock keyring on login
-  security.pam.services.login.gnome-keyring.enable = true;
-  security.pam.services.sddm.gnome-keyring.enable = true;
-
-  ###################################
-  # System-level: XDG Portals
-  # Ensures things like VSCode login links, file pickers, etc.
-  ###################################
-  xdg.portal = {
-    enable = true;
-
-    # KDE Plasma portal
-    extraPortals = [
-      pkgs.xdg-desktop-portal-kde
-      pkgs.xdg-desktop-portal-gtk  # fallback portal for apps
-    ];
-
-    config.common.default = "kde";
-  };
-
-  # just in case (not required, but helpful)
-  environment.systemPackages = with pkgs; [
-    xdg-utils
-  ];
-
-  ###################################
   # NixOS State Version
   ###################################
   system.stateVersion = "25.05";
