@@ -1,0 +1,4 @@
+👹 testuser ・ nixos ~   〆 ps aux | grep gnome-keyring
+testuser    2491  0.0  0.0   6836  2820 pts/0    S+   17:43   0:00 /nix/store/90r466lzg0jw11v60cki60s0qfhs93vp-gnugrep-3.11/bin/grep --color=auto gnome-keyring
+
+👹 testuser ・ nixos ~   〆
