@@ -23,5 +23,8 @@
     kdePackages.kate           # GUI text editor
     kdePackages.kwallet        # KDE wallet for credential storage
     kdePackages.kwalletmanager # GUI for managing KWallet
+
+    # --- Keyring compatibility ---
+    libsecret                  # Provides org.freedesktop.secrets API for apps like VSCode
   ];
 }

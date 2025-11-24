@@ -47,9 +47,14 @@
   # Include COSMIC as an option
   services.desktopManager.cosmic.enable = true;
 
-  # Enable KWallet for credential storage (needed by VSCode, browsers, etc.)
+  # Enable KWallet for credential storage (for KDE apps)
   security.pam.services.sddm.enableKwallet = true;
   security.pam.services.login.enableKwallet = true;
+
+  # Enable GNOME Keyring for apps that need org.freedesktop.secrets (VSCode, etc.)
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 
   # Enable XDG Desktop Portal for proper app integration
   xdg.portal = {
