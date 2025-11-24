@@ -21,6 +21,7 @@
 
       #General
       github.copilot
+      anthropic.claude-code
       esbenp.prettier-vscode
       eamodio.gitlens
     ];
