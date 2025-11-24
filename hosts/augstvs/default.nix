@@ -7,12 +7,21 @@
     ../../modules/apps/graphical.nix
   ];
 
-  # Basic system identity
+  ###################################
+  # Bootloader (UEFI desktop)
+  ###################################
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   networking.hostName = "augstvs";
+
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Chicago";
 
+  ###################################
+  # Locale
+  ###################################
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -26,13 +35,14 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Display / DE
+  ###################################
+  # KDE Plasma 6 + SDDM (+ COSMIC)
+  ###################################
   services.xserver.enable = true;
 
   services.displayManager.sddm.enable = true;
-  services.displayManager.defaultSession = "plasma";
-
   services.desktopManager.plasma6.enable = true;
+
   services.desktopManager.cosmic.enable = true;
 
   services.xserver.xkb = {
@@ -40,12 +50,17 @@
     variant = "";
   };
 
+  ###################################
   # Printing
+  ###################################
   services.printing.enable = true;
 
-  # Audio
+  ###################################
+  # Pipewire + Audio
+  ###################################
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -53,15 +68,56 @@
     pulse.enable = true;
   };
 
-  # User account: euche on augstvs
+  ###################################
+  # User
+  ###################################
   users.users.euche = {
     isNormalUser = true;
     description = "euche";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  ###################################
+  # Unfree
+  ###################################
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  ###################################
+  # Flakes
+  ###################################
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  ###################################
+  # System-level: GNOME Keyring
+  ###################################
+  services.gnome.gnome-keyring.enable = true;
+
+  security.pam.services.login.gnome-keyring.enable = true;
+  security.pam.services.sddm.gnome-keyring.enable = true;
+
+  ###################################
+  # System-level: XDG Portals
+  ###################################
+  xdg.portal = {
+    enable = true;
+
+    extraPortals = [
+      pkgs.xdg-desktop-portal-kde
+      pkgs.xdg-desktop-portal-gtk
+    ];
+
+    config.common.default = "kde";
+  };
+
+  environment.systemPackages = with pkgs; [
+    xdg-utils
+  ];
+
+  ###################################
+  # NixOS State Version
+  ###################################
   system.stateVersion = "25.05";
 }
