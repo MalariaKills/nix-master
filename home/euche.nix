@@ -9,6 +9,8 @@
 
     ./modules/dev/vscode.nix
 
+    ./modules/apps/firefox.nix
+
     ./modules/fonts/default.nix
   ];
 
