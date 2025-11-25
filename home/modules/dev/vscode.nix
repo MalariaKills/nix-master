@@ -42,7 +42,7 @@ in
         #General
         github.copilot
         esbenp.prettier-vscode
-        eamodio.gitlens
+        mhutchie.git-graph
       ];
 
       # User settings
