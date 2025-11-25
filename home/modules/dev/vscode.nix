@@ -28,28 +28,33 @@ in
     enable = true;
     package = vscode-wrapped;
 
-    profiles.default = {
-      extensions = with pkgs.vscode-extensions; [
+    extensions = with pkgs.vscode-extensions; [
 
-        #Nix
-        jnoortheen.nix-ide
+      #Nix
+      jnoortheen.nix-ide
 
-        #Languages
-        ms-python.python
-        rust-lang.rust-analyzer
-        golang.go
+      #Languages
+      ms-python.python
+      rust-lang.rust-analyzer
+      golang.go
 
-        #General
-        github.copilot
-        esbenp.prettier-vscode
-        eamodio.gitlens
-      ];
+      #General
+      github.copilot
+      esbenp.prettier-vscode
+      eamodio.gitlens
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "git-graph";
+        publisher = "mhutchie";
+        version = "1.30.0";
+        sha256 = "sha256-sHeaMMr5hmQ0kAFZxxMiRk6f0mfjkg2XMnA4Gf+DHwA=";
+      }
+    ];
 
-      # User settings
-      userSettings = {
-        # Custom title bar for better Wayland/portal integration
-        "window.titleBarStyle" = "custom";
-      };
+    # User settings
+    userSettings = {
+      # Custom title bar for better Wayland/portal integration
+      "window.titleBarStyle" = "custom";
     };
   };
 }
