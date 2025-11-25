@@ -1,7 +1,0 @@
-👹 testuser ・ nixos ~   〆 echo $XDG_CURRENT_DESKTOP
-KDE
-
-👹 testuser ・ nixos ~   〆 echo $XDG_SESSION_TYPE
-wayland
-
-👹 testuser ・ nixos ~   〆

@@ -1,3 +1,0 @@
-👹 testuser ・ nixos ~   〆 cat ~/.config/Code/User/settings.json 2>/dev/null | grep -i keyring
-
-👹 testuser ・ nixos ~   ✗

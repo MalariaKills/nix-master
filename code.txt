@@ -1,4 +1,0 @@
-👹 testuser ・ nixos ~   〆 code --password-store
-Option 'password-store' requires a non empty value. Ignoring the option.
-
-👹 testuser ・ nixos ~   〆

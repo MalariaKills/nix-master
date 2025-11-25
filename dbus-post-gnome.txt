@@ -1,6 +1,0 @@
-👹 testuser ・ nixos ~   〆 dbus-send --session --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep -i secret
-      string "org.kde.ksecretd"
-      string "org.freedesktop.secrets"
-      string "org.kde.secretservicecompat"
-
-👹 testuser ・ nixos ~   〆
