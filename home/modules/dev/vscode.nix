@@ -4,10 +4,22 @@
 # Because declaring extensions requires HM.
 { pkgs, ... }:
 
+let
+  # Create a wrapper that always passes --password-store=gnome-libsecret
+  vscode-wrapped = pkgs.symlinkJoin {
+    name = "vscode-wrapped";
+    paths = [ pkgs.vscode ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/code \
+        --add-flags "--password-store=gnome-libsecret"
+    '';
+  };
+in
 {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
+    package = vscode-wrapped;
 
     profiles.default.extensions = with pkgs.vscode-extensions; [
 
@@ -29,21 +41,6 @@
     userSettings = {
       # Custom title bar for better Wayland/portal integration
       "window.titleBarStyle" = "custom";
-    };
-  };
-
-  # Override the VSCode desktop file to add password-store flag
-  # This ensures VSCode always uses gnome-libsecret (works with KWallet's secret service)
-  xdg.desktopEntries.code = {
-    name = "Visual Studio Code";
-    genericName = "Text Editor";
-    exec = "${pkgs.vscode}/bin/code --password-store=gnome-libsecret %F";
-    icon = "vscode";
-    type = "Application";
-    categories = [ "Development" "IDE" ];
-    mimeType = [ "text/plain" "inode/directory" ];
-    settings = {
-      StartupWMClass = "Code";
     };
   };
 }
