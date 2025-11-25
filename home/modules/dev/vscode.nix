@@ -43,6 +43,9 @@ in
         github.copilot
         esbenp.prettier-vscode
         mhutchie.git-graph
+
+        #Theme
+        ntbbloodbath.doom-one
       ];
 
       # User settings
