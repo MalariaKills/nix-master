@@ -6,7 +6,7 @@
 
 let
   # Create a wrapper that always passes --password-store=gnome-libsecret
-  vscode-wrapped = pkgs.symlinkJoin {
+  vscode-wrapped = (pkgs.symlinkJoin {
     name = "vscode-wrapped";
     paths = [ pkgs.vscode ];
     buildInputs = [ pkgs.makeWrapper ];
@@ -14,6 +14,10 @@ let
       wrapProgram $out/bin/code \
         --add-flags "--password-store=gnome-libsecret"
     '';
+  }) // {
+    # Preserve metadata that home-manager expects
+    pname = pkgs.vscode.pname;
+    version = pkgs.vscode.version;
   };
 in
 {
