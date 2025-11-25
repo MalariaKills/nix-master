@@ -18,6 +18,9 @@ let
     # Preserve metadata that home-manager expects
     pname = pkgs.vscode.pname;
     version = pkgs.vscode.version;
+    meta = pkgs.vscode.meta // {
+      mainProgram = "code";
+    };
   };
 in
 {
@@ -25,26 +28,28 @@ in
     enable = true;
     package = vscode-wrapped;
 
-    profiles.default.extensions = with pkgs.vscode-extensions; [
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
 
-      #Nix
-      jnoortheen.nix-ide
+        #Nix
+        jnoortheen.nix-ide
 
-      #Languages
-      ms-python.python
-      rust-lang.rust-analyzer
-      golang.go
+        #Languages
+        ms-python.python
+        rust-lang.rust-analyzer
+        golang.go
 
-      #General
-      github.copilot
-      esbenp.prettier-vscode
-      eamodio.gitlens
-    ];
+        #General
+        github.copilot
+        esbenp.prettier-vscode
+        eamodio.gitlens
+      ];
 
-    # User settings
-    userSettings = {
-      # Custom title bar for better Wayland/portal integration
-      "window.titleBarStyle" = "custom";
+      # User settings
+      userSettings = {
+        # Custom title bar for better Wayland/portal integration
+        "window.titleBarStyle" = "custom";
+      };
     };
   };
 }
