@@ -12,7 +12,6 @@
     discord
 
     # --- Common GUI utilities ---
-    firefox
     vlc
     gimp
 
